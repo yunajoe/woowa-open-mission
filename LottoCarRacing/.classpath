@@ -13,5 +13,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="/Users/yunajoe/Downloads/assertj-core-3.27.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

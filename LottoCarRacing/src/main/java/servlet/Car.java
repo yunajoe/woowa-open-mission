@@ -62,9 +62,10 @@ public class Car extends HttpServlet {
 		    int amount = Integer.parseInt(gameMoney);
 			
 			carValidation.carValidate(carNames, amount);
+		    response.sendRedirect("racing.jsp");
+
 
 		} catch (Exception e) {
-			System.out.println("error ===>>>> " + e.getMessage());
 			throw new ServletException(e);
 
 		}
