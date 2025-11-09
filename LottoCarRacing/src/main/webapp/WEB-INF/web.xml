@@ -5,8 +5,15 @@
                              http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" 
          version="4.0">
 
-    <!-- 여기에 서블릿이나 필터 설정을 추가하세요 -->
+<error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/error.jsp</location>
+</error-page>
+
+<error-page>
+    <error-code>500</error-code>
+    <location>/error.jsp</location>
+</error-page>
 
     
-
 </web-app>
