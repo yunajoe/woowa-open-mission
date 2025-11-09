@@ -19,10 +19,10 @@
         </div>
 
 
-        <form action= "<%= request.getContextPath() %>/car" method=get" class="car-input-container">
+        <form action= "<%= request.getContextPath() %>/car" method=post class="input-container">
             <div class="input-container">
                 <label for="car-input">자동차 이름 입력 (쉼표로 구분)</label>
-                <input id="car-input" name="carNames" required />
+                <input id="car-input" name="carNames" />
             </div>
             <p>* 2~100대, 이름 1~10자, 공백 불가, 중복 불가</p>
 

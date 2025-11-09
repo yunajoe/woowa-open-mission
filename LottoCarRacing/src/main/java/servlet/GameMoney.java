@@ -16,52 +16,52 @@ import java.net.URLEncoder;
  */
 @WebServlet("/gameMoney")
 public class GameMoney extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public GameMoney() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+  /**
+   * @see HttpServlet#HttpServlet()
+   */
+  public GameMoney() {
+    super();
+    // TODO Auto-generated constructor stub
+  }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+  /**
+   * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+   */
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    // TODO Auto-generated method stub
+    response.getWriter().append("Served at: ").append(request.getContextPath());
+  }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
+  /**
+   * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+   */
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
+    // TODO Auto-generated method stub
+    PrintWriter out = response.getWriter();
 
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
+    request.setCharacterEncoding("UTF-8");
+    response.setContentType("text/html; charset=UTF-8");
 
-		String gameMoney = request.getParameter("gameMoney");
-		out.println("<h1>입력한:" + gameMoney);
+    String gameMoney = request.getParameter("gameMoney");
+    out.println("<h1>입력한:" + gameMoney);
 
-		GameMoneyValidation gameMoneyValidation = new GameMoneyValidation();
 
-		try {
-			gameMoneyValidation.validate(gameMoney);
-			request.getSession().setAttribute("gameMoney", gameMoney);
-			response.sendRedirect("car.jsp");
+    try {
+      GameMoneyValidation gameMoneyValidation = new GameMoneyValidation();
+      gameMoneyValidation.validate(gameMoney);
+      request.getSession().setAttribute("gameMoney", gameMoney);
+      response.sendRedirect("car.jsp");
 
-		} catch (Exception e) {
-			System.out.println("error ===>>>> " + e.getMessage());
-			throw new ServletException(e);
+    } catch (Exception e) {
+      System.out.println("error ===>>>> " + e.getMessage());
+      throw new ServletException(e);
 
-		}
+    }
 
-	}
+  }
 
 }
