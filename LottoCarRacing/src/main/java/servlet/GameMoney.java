@@ -57,7 +57,6 @@ public class GameMoney extends HttpServlet {
       response.sendRedirect("car.jsp");
 
     } catch (Exception e) {
-      System.out.println("error ===>>>> " + e.getMessage());
       throw new ServletException(e);
 
     }

@@ -10,8 +10,8 @@ public class BaseValidation {
     }
   }
 
-  protected void checkEmpty(String str) {
-    if (str.isEmpty()) {
+  protected void checkBlank(String str) {
+    if (str.isBlank()) {
       throw new IllegalArgumentException("문자열이 비어있습니다.");
     }
 
@@ -26,7 +26,7 @@ public class BaseValidation {
   public void validate(String str) {
 
     checkNull(str);
-    checkEmpty(str);
+    checkBlank(str);
     checkContainBlank(str);
 
   }

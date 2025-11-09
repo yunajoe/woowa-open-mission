@@ -36,7 +36,7 @@ public class CarValidation extends BaseValidation {
       checkValidCarNameLengh(car);
 
       super.checkNull(car);
-      super.checkEmpty(car);
+      super.checkBlank(car);
       super.checkContainBlank(car);
 
 
@@ -55,7 +55,7 @@ public class CarValidation extends BaseValidation {
       checkValidCarNameLengh(car);
 
       super.checkNull(car);
-      super.checkEmpty(car);
+      super.checkBlank(car);
       super.checkContainBlank(car);
     }
 
