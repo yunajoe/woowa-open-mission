@@ -6,10 +6,10 @@ import java.util.List;
 
 public class CarValidation extends BaseValidation {
 
-  protected void checkValidCarNameLengh(String str) {
+  protected void checkValidCarNameLength(String str) {
     boolean isValid = str.length() >= 1 && str.length() <= 5;
     if (!isValid) {
-      throw new IllegalArgumentException("최소 길이는 1 최대 길이는 5입니다.");
+      throw new IllegalArgumentException("자동차 이름 길이는 최소 한글자 최대 다섯글자입니다.");
     }
   }
 
@@ -22,6 +22,9 @@ public class CarValidation extends BaseValidation {
 
   }
 
+
+
+  // TODO: 리팩토링
   @Override
   public void validate(String str) {
     super.validate(str);
@@ -33,11 +36,11 @@ public class CarValidation extends BaseValidation {
 
     for (String rawCar : carList) {
       String car = rawCar.trim();
-      checkValidCarNameLengh(car);
-
       super.checkNull(car);
       super.checkBlank(car);
       super.checkContainBlank(car);
+      checkValidCarNameLength(car);
+
 
 
     }
@@ -47,16 +50,16 @@ public class CarValidation extends BaseValidation {
 
   public void carValidate(String str, int amount) {
     List<String> carList = Arrays.asList(str.split(","));
-    System.out.println("carNAmesLeng===>"+ carList);
+    System.out.println("carNAmesLeng===>" + carList);
     checkMatchWithGameMoney(carList, amount);
 
     for (String rawCar : carList) {
       String car = rawCar.trim();
-      checkValidCarNameLengh(car);
 
       super.checkNull(car);
       super.checkBlank(car);
       super.checkContainBlank(car);
+      checkValidCarNameLength(car);
     }
 
 
