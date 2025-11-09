@@ -87,6 +87,17 @@ class CarValidationTest {
         .hasMessageContaining("문자열이 비어있습니다.");
   }
   
+  @Test
+  @DisplayName("자동차 이름이 중복일 경우 예외 발생")
+  void test_carValidate_duplicateName_shouldFail() {
+    String carNames = "car1,car1,car2"; 
+    int amount = 3000;
+
+    assertThatThrownBy(() -> validation.carValidate(carNames, amount))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessageContaining("중복된 자동차 이름은 입력할 수 없습니다.");
+  }
+  
 
   
   

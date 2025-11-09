@@ -3,8 +3,19 @@ package validation;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CarValidation extends BaseValidation {
+
+
+  protected void checkDuplicatedName(List<String> carNames) {
+    List<String> distinctCarNames = carNames.stream().distinct().collect(Collectors.toList());
+    System.out.println("discinctCarNames" + distinctCarNames);
+    if (carNames.size() != distinctCarNames.size()) {
+      throw new IllegalArgumentException("중복된 자동차 이름은 입력할 수 없습니다.");
+    }
+  }
+
 
   protected void checkValidCarNameLength(String str) {
     boolean isValid = str.length() >= 1 && str.length() <= 5;
@@ -19,7 +30,6 @@ public class CarValidation extends BaseValidation {
     if (!isValid) {
       throw new IllegalArgumentException("입력한 금액에 맞는 자동차 갯수를 입력해야 합니다.");
     }
-
   }
 
 
@@ -52,6 +62,7 @@ public class CarValidation extends BaseValidation {
     List<String> carList = Arrays.asList(str.split(","));
     System.out.println("carNAmesLeng===>" + carList);
     checkMatchWithGameMoney(carList, amount);
+    checkDuplicatedName(carList);
 
     for (String rawCar : carList) {
       String car = rawCar.trim();
