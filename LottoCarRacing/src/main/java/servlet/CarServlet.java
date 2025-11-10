@@ -60,13 +60,18 @@ public class CarServlet extends HttpServlet {
 		    int amount = Integer.parseInt(gameMoney);
 			
 			List<String> cars = carValidation.carValidate(carNames, amount);
+			List<Car> carInstance = carService.run(cars);
 			
-			List<Car> carInstance = carService.makeCarInstance(cars);
-			
-			carService.play(carInstance);
-		    carService.calculateRacing(carInstance);
-				
+//			
+//			List<Car> carInstance = carService.makeCarInstance(cars);
+//			
+//			carService.play(carInstance);
+//		    carService.calculateRacing(carInstance);
+//		    
+//		    
+		    session.setAttribute("carResults", carInstance);
 		    response.sendRedirect("racing.jsp");
+
 
 		} catch (Exception e) {
 			throw new ServletException(e);

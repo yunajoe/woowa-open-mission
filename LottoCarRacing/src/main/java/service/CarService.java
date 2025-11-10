@@ -12,7 +12,7 @@ public class CarService {
 
 
 
-  public List<Car> makeCarInstance(List<String> carNames) {
+  protected List<Car> makeCarInstance(List<String> carNames) {
 
     List<Car> cars = new ArrayList<>();
     for (String carName : carNames) {
@@ -24,7 +24,16 @@ public class CarService {
   }
 
 
-  protected void calculateRacing(Car car, int num) {
+  protected void racing(List<Car> cars) {
+    for (int i = 1; i <= round; i++) {
+      for (Car car : cars) {
+        int num = Randoms.pickNumberInRange(0, 9);
+        calculateRacingScore(car, num);
+      }
+    }
+  }
+
+  protected void calculateRacingScore(Car car, int num) {
     if (num >= 5 && num <= 9) {
       car.forwardCar();
     } else if (num >= 1 && num <= 5) {
@@ -36,28 +45,29 @@ public class CarService {
 
 
 
-  public void play(List<Car> cars) {
-    for (int i = 1; i <= round; i++) {
-      for (Car car : cars) {
-        int num = Randoms.pickNumberInRange(0, 9);
-        calculateRacing(car, num);
-      }
-    }
-  }
-  
- public void calculateRacing(List<Car> cars){
-    for(Car car : cars) {
+  protected void calculateWinners(List<Car> cars) {
+    for (Car car : cars) {
       String carName = car.getName();
       int forwardCount = car.getForward();
       int backwardCount = car.getBackward();
       int stopCount = car.getStop();
       int result = forwardCount - backwardCount;
       car.setFinalScore(result);
+      System.out.println("forward ===>" + car.getForward() + "===>>>backward ===>>"
+          + car.getBackward() + "===>> stop ===>" + car.getStop());
       System.out.println(car.getName() + " -> result: " + car.getFinalScore());
 
     }
-   
- }
+
+  }
+
+  public List<Car> run(List<String> cars) {
+    List<Car> instanceCars = makeCarInstance(cars);
+    racing(instanceCars);
+    calculateWinners(instanceCars);
+    return instanceCars;
+
+  }
 
 
 
