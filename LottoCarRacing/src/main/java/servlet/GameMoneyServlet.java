@@ -15,13 +15,13 @@ import java.net.URLEncoder;
  * Servlet implementation class GameMoney
  */
 @WebServlet("/gameMoney")
-public class GameMoney extends HttpServlet {
+public class GameMoneyServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
   /**
    * @see HttpServlet#HttpServlet()
    */
-  public GameMoney() {
+  public GameMoneyServlet() {
     super();
     // TODO Auto-generated constructor stub
   }

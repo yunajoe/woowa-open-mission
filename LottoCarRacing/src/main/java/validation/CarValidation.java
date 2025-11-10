@@ -10,7 +10,6 @@ public class CarValidation extends BaseValidation {
 
   protected void checkDuplicatedName(List<String> carNames) {
     List<String> distinctCarNames = carNames.stream().distinct().collect(Collectors.toList());
-    System.out.println("discinctCarNames" + distinctCarNames);
     if (carNames.size() != distinctCarNames.size()) {
       throw new IllegalArgumentException("중복된 자동차 이름은 입력할 수 없습니다.");
     }
@@ -34,31 +33,7 @@ public class CarValidation extends BaseValidation {
 
 
 
-  // TODO: 리팩토링
-//  @Override
-//  public void validate(String str) {
-//    super.validate(str);
-//
-//
-//    List<String> carList = Arrays.asList(str.split(","));
-//
-//    System.out.println("LIST" + carList);
-//
-//    for (String rawCar : carList) {
-//      String car = rawCar.trim();
-//      super.checkNull(car);
-//      super.checkBlank(car);
-//      super.checkContainBlank(car);
-//      checkValidCarNameLength(car);
-//
-//
-//
-//    }
-//
-//
-//  }
-
-  public void carValidate(String str, int amount) {
+  public List<String> carValidate(String str, int amount) {
     List<String> carList = Arrays.asList(str.split(","));
     System.out.println("carNAmesLeng===>" + carList);
     checkMatchWithGameMoney(carList, amount);
@@ -72,8 +47,9 @@ public class CarValidation extends BaseValidation {
       super.checkContainBlank(car);
       checkValidCarNameLength(car);
     }
-
-
+    
+    return carList;
+   
 
   }
 

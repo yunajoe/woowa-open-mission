@@ -6,23 +6,25 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Car;
 import service.CarService;
 import validation.CarValidation;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 /**
  * Servlet implementation class Car
  */
 @WebServlet("/car")
-public class Car extends HttpServlet {
+public class CarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Car() {
+	public CarServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -48,6 +50,8 @@ public class Car extends HttpServlet {
 
 		try {
 			CarValidation carValidation = new CarValidation();
+	   
+
 		    CarService carService = new CarService();
 			HttpSession session = request.getSession();
 
@@ -55,13 +59,14 @@ public class Car extends HttpServlet {
 			
 		    int amount = Integer.parseInt(gameMoney);
 			
-			carValidation.carValidate(carNames, amount);
+			List<String> cars = carValidation.carValidate(carNames, amount);
 			
-			carService.play();
-		
-		
+			List<Car> carInstance = carService.makeCarInstance(cars);
+			
+			carService.play(carInstance);
+		    carService.calculateRacing(carInstance);
+				
 		    response.sendRedirect("racing.jsp");
-
 
 		} catch (Exception e) {
 			throw new ServletException(e);
