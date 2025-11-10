@@ -15,5 +15,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="/Users/yunajoe/Downloads/assertj-core-3.27.3.jar"/>
+	<classpathentry kind="lib" path="/Users/yunajoe/Downloads/mission-utils-1.2.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

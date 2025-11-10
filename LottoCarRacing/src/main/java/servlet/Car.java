@@ -34,10 +34,6 @@ public class Car extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/plain; charset=UTF-8");
-
-		PrintWriter out = response.getWriter();
-		out.println("Hello, CarServlet!입니당 ");
-		out.close();
 	}
 
 	/**
@@ -45,16 +41,14 @@ public class Car extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
 		String carNames = request.getParameter("carNames");
-		PrintWriter out = response.getWriter();
-		out.println("<h1>입력한 값:" + carNames);
 
 		try {
 			CarValidation carValidation = new CarValidation();
+		    CarService carService = new CarService();
 			HttpSession session = request.getSession();
 
 			String gameMoney = (String) session.getAttribute("gameMoney");
@@ -62,6 +56,10 @@ public class Car extends HttpServlet {
 		    int amount = Integer.parseInt(gameMoney);
 			
 			carValidation.carValidate(carNames, amount);
+			
+			carService.play();
+		
+		
 		    response.sendRedirect("racing.jsp");
 
 

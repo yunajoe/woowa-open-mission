@@ -18,7 +18,7 @@
       <div class="input-container">
         <label for="car-input">자동차 이름 입력 (쉼표로 구분)</label> <input id="car-input" name="carNames" />
       </div>
-      <p>* 2~100대, 이름 1~10자, 공백 불가, 중복 불가</p>
+      <p class="info">* 2~100대, 이름 1~10자, 공백 불가, 중복 불가</p>
       <button type="submit" class="button">레이스 시작</button>
     </form>
   </div>

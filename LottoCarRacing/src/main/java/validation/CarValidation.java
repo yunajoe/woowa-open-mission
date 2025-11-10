@@ -35,28 +35,28 @@ public class CarValidation extends BaseValidation {
 
 
   // TODO: 리팩토링
-  @Override
-  public void validate(String str) {
-    super.validate(str);
-
-
-    List<String> carList = Arrays.asList(str.split(","));
-
-    System.out.println("LIST" + carList);
-
-    for (String rawCar : carList) {
-      String car = rawCar.trim();
-      super.checkNull(car);
-      super.checkBlank(car);
-      super.checkContainBlank(car);
-      checkValidCarNameLength(car);
-
-
-
-    }
-
-
-  }
+//  @Override
+//  public void validate(String str) {
+//    super.validate(str);
+//
+//
+//    List<String> carList = Arrays.asList(str.split(","));
+//
+//    System.out.println("LIST" + carList);
+//
+//    for (String rawCar : carList) {
+//      String car = rawCar.trim();
+//      super.checkNull(car);
+//      super.checkBlank(car);
+//      super.checkContainBlank(car);
+//      checkValidCarNameLength(car);
+//
+//
+//
+//    }
+//
+//
+//  }
 
   public void carValidate(String str, int amount) {
     List<String> carList = Arrays.asList(str.split(","));

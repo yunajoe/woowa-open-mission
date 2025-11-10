@@ -1,10 +1,20 @@
 package service;
 
+import camp.nextstep.edu.missionutils.Randoms;
+import model.Car;
+
 public class CarService {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+     Car car = new Car();
+  
 
-	}
+     public void play() {
+      // TODO Auto-generated method stub
+
+       int num = Randoms.pickNumberInRange(0, 9);
+       System.out.println(num);
+     }
+
+
 
 }

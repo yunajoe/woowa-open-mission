@@ -17,7 +17,7 @@
       <div class="input-container">
         <label for="game-money-input">금액 입력</label> <input id="game-money-input" name="gameMoney" />
       </div>
-      <p>* 3000원 이상 입력</p>
+      <p class="info">* 3000원 이상 입력</p>
       <button type="submit" class="button">레이스 시작</button>
     </form>
   </div>
