@@ -61,15 +61,8 @@ public class CarServlet extends HttpServlet {
 			
 			List<String> cars = carValidation.carValidate(carNames, amount);
 			List<Car> carInstance = carService.run(cars);
-			
-//			
-//			List<Car> carInstance = carService.makeCarInstance(cars);
-//			
-//			carService.play(carInstance);
-//		    carService.calculateRacing(carInstance);
-//		    
-//		    
-		    session.setAttribute("carResults", carInstance);
+				    
+		    session.setAttribute("carRacingResults", carInstance);
 		    response.sendRedirect("racing.jsp");
 
 

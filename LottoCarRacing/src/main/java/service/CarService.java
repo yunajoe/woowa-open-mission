@@ -42,6 +42,10 @@ public class CarService {
       car.stopCar();
     }
   }
+  
+ protected void sortByAsendingFinalScore(List<Car> cars) {
+    cars.sort((a,b) -> b.getFinalScore() - a.getFinalScore());
+ }
 
 
 
@@ -53,9 +57,6 @@ public class CarService {
       int stopCount = car.getStop();
       int result = forwardCount - backwardCount;
       car.setFinalScore(result);
-      System.out.println("forward ===>" + car.getForward() + "===>>>backward ===>>"
-          + car.getBackward() + "===>> stop ===>" + car.getStop());
-      System.out.println(car.getName() + " -> result: " + car.getFinalScore());
 
     }
 
@@ -65,6 +66,7 @@ public class CarService {
     List<Car> instanceCars = makeCarInstance(cars);
     racing(instanceCars);
     calculateWinners(instanceCars);
+    sortByAsendingFinalScore(instanceCars);
     return instanceCars;
 
   }
