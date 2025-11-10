@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+    background-color: #E5E7EB;
+	
+}
+
+.container {
+   background-color: #fff;	
+   display:flex;
+   flex-direction:column;	
+   row-gap: 30px;
+   padding: 20px;
+   
+}
+
+.title {
+    align-self:center;
+   	font-size: 6rem;
+    color: #000;
+   @media (max-width:768px){
+     font-size: 5rem;
+   }
+   
+}
+
+.result-container {	
+    background-color: #fef9c3;
+}
+
+
+
+.table {
+	width: 100%;		
+	& th {
+	  color: #A855F7;
+      font-size: 1.6rem;
+      text-align:left;    
+      height: 30px;
+     
+	}	
+	& td {
+		color: #000;
+		font-size: 1.4rem;
+	}
+}
+
+.lotto-container {
+	display:flex;
+	flex-direction: column;
+	row-gap: 4px;
+	
+	   
+   & input {
+      width: 20%;  
+   }
+		
+		
+}
+
+.lotto-title {
+   font-size: 2rem;		
+		
+}
+
+.info {	
+   color: #D6CECE;
+   font-size: 1.6rem;	
+		
+}
+
+.lotto-input-box-container {
+   display:flex;	
+   column-gap: 10px;
+}
+
+.button {
+	outline:none;
+	border:none;
+	cursor:pointer;
+	padding: 10px;
+	width:100%;
+	background-color:#A855F7;
+}
+
+
+

@@ -35,7 +35,6 @@ public class CarValidation extends BaseValidation {
 
   public List<String> carValidate(String str, int amount) {
     List<String> carList = Arrays.asList(str.split(","));
-    System.out.println("carNAmesLeng===>" + carList);
     checkMatchWithGameMoney(carList, amount);
     checkDuplicatedName(carList);
 
