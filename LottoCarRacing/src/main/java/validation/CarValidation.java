@@ -3,6 +3,7 @@ package validation;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import model.CarValidationResult;
 
 public class CarValidation extends BaseValidation {
 
@@ -21,17 +22,15 @@ public class CarValidation extends BaseValidation {
       throw new IllegalArgumentException("중복된 자동차 이름은 입력할 수 없습니다.");
     }
   }
-  
-  
-  protected void checkRankedCarNames(List<String> carNames, List<String> topRanksCarNames){
-     Boolean isValid = carNames.containsAll(topRanksCarNames);
-     if(!isValid) {
-       throw new IllegalArgumentException("1 ~ 3등 차 이름은 경주할 자동차 이름에 포함되어야 합니다.");
-     }
+
+
+  protected void checkRankedCarNames(List<String> carNames, List<String> topRanksCarNames) {
+    Boolean isValid = carNames.containsAll(topRanksCarNames);
+    if (!isValid) {
+      throw new IllegalArgumentException("1 ~ 3등 차 이름은 경주할 자동차 이름에 포함되어야 합니다.");
+    }
   }
-  
-  
-  
+
 
 
   protected void checkValidCarNameLength(String str) {
@@ -43,15 +42,14 @@ public class CarValidation extends BaseValidation {
 
 
 
-
-  public List<String> carValidate(String carNames, String topRanksCarNames, int amount) {
+  public CarValidationResult carValidate(String carNames, String topRanksCarNames, int amount) {
     List<String> carList = Arrays.asList(carNames.split(","));
     List<String> topRanksCarList = Arrays.asList(topRanksCarNames.split(","));
-    
-    
+
+
     checkMatchWithGameMoney(carList, amount);
     checkDuplicatedName(carList);
-    
+
 
     for (String rawCar : carList) {
       String car = rawCar.trim();
@@ -61,14 +59,12 @@ public class CarValidation extends BaseValidation {
       super.checkContainBlank(car);
       checkValidCarNameLength(car);
     }
-    
-    
+
+
     checkDuplicatedName(topRanksCarList);
     checkRankedCarNames(carList, topRanksCarList);
 
-    return carList;
-
-
+    return new CarValidationResult(carList, topRanksCarList);
   }
 
 }

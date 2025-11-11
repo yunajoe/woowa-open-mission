@@ -9,6 +9,8 @@ public class CarService {
 
 
   final int round = 10;
+  
+  RacingService racingService = new RacingService();
 
   protected List<Car> makeCarInstance(List<String> carNames) {
 
@@ -19,26 +21,6 @@ public class CarService {
 
     return cars;
 
-  }
-
-
-  protected void racing(List<Car> cars) {
-    for (int i = 1; i <= round; i++) {
-      for (Car car : cars) {
-        int num = Randoms.pickNumberInRange(0, 9);
-        calculateRacingScore(car, num);
-      }
-    }
-  }
-
-  protected void calculateRacingScore(Car car, int num) {
-    if (num >= 5 && num <= 9) {
-      car.forwardCar();
-    } else if (num >= 1 && num <= 5) {
-      car.backwardCar();
-    } else if (num == 0) {
-      car.stopCar();
-    }
   }
 
 
@@ -65,8 +47,7 @@ public class CarService {
 
   public List<Car> run(List<String> cars) {
     List<Car> instanceCars = makeCarInstance(cars);
-    racing(instanceCars);
-    calculateWinners(instanceCars);
+    racingService.run(instanceCars);
     sortByAsendingFinalScore(instanceCars);
     return instanceCars;
 

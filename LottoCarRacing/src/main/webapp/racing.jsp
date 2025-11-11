@@ -21,7 +21,10 @@
         <th>순위</th>
       </tr>
       <%
-      List<Car> cars = (List<Car>) session.getAttribute("carRacingResults");
+        List<Car> cars = (List<Car>) session.getAttribute("carRacingResults");
+        List<String> topRanks = (List<String>) session.getAttribute("topRanksCars");
+      %>
+      <%
       if (cars != null && !cars.isEmpty()) {
       	for (int i = 0; i < cars.size(); i++) {
       		Car car = cars.get(i);
@@ -34,17 +37,35 @@
         <td><%=car.getFinalScore()%></td>
         <td><%=(i + 1)%></td>
       </tr>
-      <%
-      }
-      } else {
-      %>
-      <tr>
-        <td colspan="6" style="text-align: center;">결과 데이터가 없습니다.</td>
-      </tr>
-      <%
-      }
-      %>
+       <%
+               }
+          } else {
+        %>
+        <tr>
+          <td colspan="6" style="text-align: center;">결과 데이터가 없습니다.</td>
+        </tr>
+       <%
+           }
+       %>
     </table>
+    <div class="top-rank-section">
+       <h3>🏁 1~3등 자동차</h3>
+         <%
+            if (topRanks != null && !topRanks.isEmpty()) {
+         %>
+          <ul>
+              <% for (String carName : topRanks) { %>
+                  <li><%= carName %></li>
+              <% } %>
+          </ul>
+          <%
+              } else {
+          %>
+           <p>맞춘 자동차가 없습니다.</p>
+            <%
+                }
+            %>
+     </div>     
     <form action="<%=request.getContextPath()%>/lotto" method="post" class="form">
       <div class="lotto-container">
         <h3 class="lotto-title">당첨 번호 입력</h3>
@@ -57,7 +78,7 @@
       <div class="lotto-container">
         <h3 class="lotto-title">보너스 번호 입력</h3>
         <p class="info">1~45 사이의 숫자를 각각 입력해주세요</p>
-        <input name="bonusNum"/>
+        <input name="bonusNum" />
       </div>
       <button class="button">로또 결과 확인</button>
     </form>

@@ -9,7 +9,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Car;
+import model.CarValidationResult;
 import service.CarService;
+import service.RacingService;
 import validation.CarValidation;
 
 /**
@@ -53,6 +55,7 @@ public class CarServlet extends HttpServlet {
 
 
 		    CarService carService = new CarService();
+		    RacingService racingService = new RacingService();
 			HttpSession session = request.getSession();
 
 			String gameMoney = (String) session.getAttribute("gameMoney");
@@ -62,10 +65,15 @@ public class CarServlet extends HttpServlet {
 
 		    int amount = Integer.parseInt(gameMoney);
 
-			List<String> cars = carValidation.carValidate(carNames, topRanksCarNames, amount);
+		    CarValidationResult result  = carValidation.carValidate(carNames, topRanksCarNames, amount);
+		     
+		    List<String> cars = result.getCarList();
+		    List<String> topRanksCars = result.getTopRanksCarList();
 			List<Car> carInstance = carService.run(cars);
 
 		    session.setAttribute("carRacingResults", carInstance);
+//		    session.setAttribute("topRanksCars",  topRanksCars);
+		
 		    response.sendRedirect("racing.jsp");
 
 
