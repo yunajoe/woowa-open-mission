@@ -29,10 +29,7 @@ public class GameMoneyValidation extends BaseValidation {
 
   }
 
-
-
-  @Override
-  public void validate(String str) {
+  public void gameMoneyValidate(String str) {
     super.validate(str);
     int amount = checkValidConvertedNumber(str);
     checkGameMoneyAmount(amount);

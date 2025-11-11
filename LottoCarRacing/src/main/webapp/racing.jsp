@@ -45,21 +45,22 @@
       }
       %>
     </table>
-    <!-- 당첨 번호 입력  -->
-    <div class="lotto-container">
-      <h3 class="lotto-title">당첨 번호 입력</h3>
-      <p class="info">1~45 사이의 숫자를 각각 입력해주세요</p>
-      <div class="lotto-input-box-container">
-        <input /> <input /> <input /> <input /> <input /> <input />
+    <form action="<%=request.getContextPath()%>/lotto" method="post" class="form">
+      <div class="lotto-container">
+        <h3 class="lotto-title">당첨 번호 입력</h3>
+        <p class="info">1~45 사이의 숫자를 각각 입력해주세요</p>
+        <div class="lotto-input-box-container">
+          <input name="num1" /> <input name="num2" /> <input name="num3" /> <input name="num4" /> <input name="num5" />
+          <input name="num6" />
+        </div>
       </div>
-    </div>
-    <!-- 보너스 번호 입력   -->
-    <div class="lotto-container">
-      <h3 class="lotto-title">보너스 번호 입력</h3>
-      <p class="info">1~45 사이의 숫자를 각각 입력해주세요</p>
-      <input />
-    </div>
-    <button class="button">로또 결과 확인 </button>
+      <div class="lotto-container">
+        <h3 class="lotto-title">보너스 번호 입력</h3>
+        <p class="info">1~45 사이의 숫자를 각각 입력해주세요</p>
+        <input name="bonusNum"/>
+      </div>
+      <button class="button">로또 결과 확인</button>
+    </form>
   </div>
 </body>
 </html>

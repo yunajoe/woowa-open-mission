@@ -1,5 +1,7 @@
 package servlet;
 
+import java.io.IOException;
+import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,10 +11,6 @@ import jakarta.servlet.http.HttpSession;
 import model.Car;
 import service.CarService;
 import validation.CarValidation;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 
 /**
  * Servlet implementation class Car
@@ -33,7 +31,8 @@ public class CarServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setContentType("text/plain; charset=UTF-8");
 	}
@@ -42,26 +41,30 @@ public class CarServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 
-		String carNames = request.getParameter("carNames");
+
 
 		try {
 			CarValidation carValidation = new CarValidation();
-	   
+
 
 		    CarService carService = new CarService();
 			HttpSession session = request.getSession();
 
 			String gameMoney = (String) session.getAttribute("gameMoney");
-			
+		    String carNames = request.getParameter("carNames");
+		    String topRanksCarNames = request.getParameter("topRanksCarNames");
+
+
 		    int amount = Integer.parseInt(gameMoney);
-			
-			List<String> cars = carValidation.carValidate(carNames, amount);
+
+			List<String> cars = carValidation.carValidate(carNames, topRanksCarNames, amount);
 			List<Car> carInstance = carService.run(cars);
-				    
+
 		    session.setAttribute("carRacingResults", carInstance);
 		    response.sendRedirect("racing.jsp");
 

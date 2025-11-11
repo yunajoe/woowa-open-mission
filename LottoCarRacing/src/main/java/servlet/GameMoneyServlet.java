@@ -1,15 +1,13 @@
 package servlet;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import validation.GameMoneyValidation;
-
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.URLEncoder;
 
 /**
  * Servlet implementation class GameMoney
@@ -29,6 +27,7 @@ public class GameMoneyServlet extends HttpServlet {
   /**
    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
    */
+  @Override
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     // TODO Auto-generated method stub
@@ -38,6 +37,7 @@ public class GameMoneyServlet extends HttpServlet {
   /**
    * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
    */
+  @Override
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     // TODO Auto-generated method stub
@@ -47,12 +47,11 @@ public class GameMoneyServlet extends HttpServlet {
     response.setContentType("text/html; charset=UTF-8");
 
     String gameMoney = request.getParameter("gameMoney");
-    out.println("<h1>입력한:" + gameMoney);
-
+    
 
     try {
       GameMoneyValidation gameMoneyValidation = new GameMoneyValidation();
-      gameMoneyValidation.validate(gameMoney);
+      gameMoneyValidation.gameMoneyValidate(gameMoney);
       request.getSession().setAttribute("gameMoney", gameMoney);
       response.sendRedirect("car.jsp");
 

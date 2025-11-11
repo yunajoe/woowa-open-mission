@@ -10,8 +10,6 @@ public class CarService {
 
   final int round = 10;
 
-
-
   protected List<Car> makeCarInstance(List<String> carNames) {
 
     List<Car> cars = new ArrayList<>();
@@ -42,7 +40,10 @@ public class CarService {
       car.stopCar();
     }
   }
-  
+
+
+ // TODO:최동 값이 같으면은 전진 횟수 비교를 해서 더 큰 걸 우선순위
+  // 그래도 같으면은 후진 횟수를 비교를 해서 작은걸 우선순위로 한다.
  protected void sortByAsendingFinalScore(List<Car> cars) {
     cars.sort((a,b) -> b.getFinalScore() - a.getFinalScore());
  }
