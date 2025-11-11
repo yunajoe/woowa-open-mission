@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Car;
 import model.CarValidationResult;
+import model.RankCar;
 import service.CarService;
 import service.RacingService;
 import validation.CarValidation;
@@ -70,7 +71,7 @@ public class CarServlet extends HttpServlet {
 		    List<String> cars = result.getCarList();
 		    List<String> topRanksCars = result.getTopRanksCarList();
 			List<Car> carInstance = carService.run(cars);
-			List<String> rankCars = carService.runTopRanksCars(carInstance, topRanksCars);
+			List<RankCar> rankCars = carService.runTopRanksCars(carInstance, topRanksCars);
 
 		    session.setAttribute("carRacingResults", carInstance);
 		    session.setAttribute("rankCars",  rankCars);

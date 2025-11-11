@@ -8,7 +8,6 @@ public class Car {
   private int finalScore;
 
 
-  // TODO:this를 언제 사용하는지 정확히 알기.
   public Car(String name) {
     this.name = name;
     this.forward = 0;

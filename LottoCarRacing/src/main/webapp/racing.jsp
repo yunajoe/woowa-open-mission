@@ -1,3 +1,4 @@
+<%@page import="model.RankCar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ page import="java.util.*, model.Car"%>
@@ -22,7 +23,7 @@
       </tr>
       <%
       List<Car> cars = (List<Car>) session.getAttribute("carRacingResults");
-      List<String> topRanks = (List<String>) session.getAttribute("rankCars");
+      List<RankCar> topRanks = (List<RankCar>) session.getAttribute("rankCars");
       %>
       <%
       if (cars != null && !cars.isEmpty()) {
@@ -55,9 +56,9 @@
       %>
       <ul class="rank-container">
         <%
-        for (String carName : topRanks) {
+        for (RankCar rankCar : topRanks) {
         %>
-        <li><%=carName%></li>
+        <li>순위 <%= rankCar.getRanking() %> : <%= rankCar.getName() %></li>
         <%
         }
         %>
@@ -74,7 +75,7 @@
         </div>
         <div class="lotto-container">
           <h3 class="lotto-title">보너스 번호 입력</h3>
-          <p class="info">1~45 사이의 숫자를 각각 입력해주세요</p>
+          <p class="info">당첨 번호와 중복되지 않는 1~45 사이의 숫자</p>
           <input name="bonusNum" />
         </div>
         <button class="button">로또 결과 확인</button>

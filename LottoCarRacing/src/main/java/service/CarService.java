@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Randoms;
 import model.Car;
+import model.RankCar;
 
 public class CarService {
 
@@ -45,15 +46,30 @@ public class CarService {
 
   }
 
-  public List<String> runTopRanksCars(List<Car> cars, List<String> topRanksCars) {
+  public List<RankCar> runTopRanksCars(List<Car> cars, List<String> topRanksCars) {
      int limit  = Math.min(3,  cars.size());
      
      List<Car> firstThreeCars = new ArrayList<>(cars.subList(0, limit));
      
-     return firstThreeCars.stream().map(Car::getName).filter(topRanksCars::contains).collect(Collectors.toList());
+     List<RankCar> rankCars = new ArrayList<>();
+     
+     for(int i=0; i < firstThreeCars.size(); i++) {
+       Car car  = firstThreeCars.get(i);
+       if(topRanksCars.contains(car.getName())){
+         rankCars.add(new RankCar(car.getName(), i + 1));
+       }
+       
+     }
+     return rankCars;  
+     
+     
+//     
+//     List<Car> rankCars = firstThreeCars.stream().filter(car -> topRanksCars.contains(car.getName())).collect(Collectors.toList());
+// 
+//     return rankCars;
+//     return firstThreeCars.stream().map(Car::getName).filter(topRanksCars::contains).collect(Collectors.toList());
      
   }
-
 
 
 }
