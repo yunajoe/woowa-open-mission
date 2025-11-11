@@ -70,9 +70,10 @@ public class CarServlet extends HttpServlet {
 		    List<String> cars = result.getCarList();
 		    List<String> topRanksCars = result.getTopRanksCarList();
 			List<Car> carInstance = carService.run(cars);
+			List<String> rankCars = carService.runTopRanksCars(carInstance, topRanksCars);
 
 		    session.setAttribute("carRacingResults", carInstance);
-//		    session.setAttribute("topRanksCars",  topRanksCars);
+		    session.setAttribute("rankCars",  rankCars);
 		
 		    response.sendRedirect("racing.jsp");
 

@@ -30,7 +30,8 @@ body {
 }
 
 .result-container {	
-    background-color: #fef9c3;
+
+    padding: 10px;
 }
 
 
@@ -51,10 +52,31 @@ body {
 }
 
 
+
+.result-container { 
+   display:flex;
+   flex-direction: column;
+   row-gap: 20px;		
+}
+.result-title {
+ font-size: 3rem;		
+ text-align:center;
+}
+
+
+.rank-container {		
+   align-self: center; 
+   
+	& li {
+	 font-size: 1.8rem;	
+	}	
+}
+
+
 .form {
    display:flex;
    flex-direction: column;
-   row-gap: 4px;	
+   row-gap: 20px;	
 		
 }
 
@@ -95,6 +117,8 @@ body {
 	width:100%;
 	background-color:#A855F7;
 }
+
+
 
 
 
