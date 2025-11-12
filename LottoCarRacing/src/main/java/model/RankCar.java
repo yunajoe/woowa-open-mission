@@ -19,8 +19,7 @@ public class RankCar {
   public int getRanking(){
     return ranking;  
   }
-   
-   
+    
    
 
 }

@@ -1,11 +1,17 @@
 package validation;
 
+import config.GameMoneyEnum;
+
 public class GameMoneyValidation extends BaseValidation {
 
-  // TODO: max 금액 정하기
+  int UNIT = GameMoneyEnum.UNIT.getValue();
+  int MAX_VALUE = GameMoneyEnum.MAX_VALUE.getValue();
+  int MIN_VALUE = GameMoneyEnum.MIN_VALUE.getValue();
+  
 
   protected void checkNonDivisibleThousand(int amount) {
-    int remainder = amount % 1000;
+
+    int remainder = amount % UNIT;
     if (remainder != 0) {
       throw new IllegalArgumentException("1000으로 나누었을 때 0으로 떨어져야 합니다.");
     }
@@ -14,8 +20,9 @@ public class GameMoneyValidation extends BaseValidation {
   }
 
   protected void checkGameMoneyAmount(int amount) {
-    if (amount < 3000) {
-      throw new IllegalArgumentException("3000원 이상으로 입력해야 합니다.");
+    boolean isValid = amount >= MIN_VALUE && amount <= MAX_VALUE;
+    if (!isValid) {
+      throw new IllegalArgumentException("최소 3000 최대 10000 입력해야 합니다.");
     }
   }
 

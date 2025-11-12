@@ -63,12 +63,6 @@ public class CarService {
      return rankCars;  
      
      
-//     
-//     List<Car> rankCars = firstThreeCars.stream().filter(car -> topRanksCars.contains(car.getName())).collect(Collectors.toList());
-// 
-//     return rankCars;
-//     return firstThreeCars.stream().map(Car::getName).filter(topRanksCars::contains).collect(Collectors.toList());
-     
   }
 
 

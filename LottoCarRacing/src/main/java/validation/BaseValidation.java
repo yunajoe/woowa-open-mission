@@ -1,7 +1,6 @@
 package validation;
 
-// private는 같은 클래스에서마 사용가
-// protected 메서드는 같은 패키지혹은 상속을 받은 곳에서 오버라이딩 오버로드 가능하다.
+
 public class BaseValidation {
 
   protected void checkNull(String str) {
@@ -24,7 +23,6 @@ public class BaseValidation {
   }
 
   public void validate(String str) {
-
     checkNull(str);
     checkBlank(str);
     checkContainBlank(str);

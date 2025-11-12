@@ -41,11 +41,9 @@ public class GameMoneyServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
     // TODO Auto-generated method stub
-    PrintWriter out = response.getWriter();
 
     request.setCharacterEncoding("UTF-8");
     response.setContentType("text/html; charset=UTF-8");
-
     String gameMoney = request.getParameter("gameMoney");
     
 

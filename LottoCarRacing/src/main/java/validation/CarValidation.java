@@ -8,6 +8,7 @@ import model.CarValidationResult;
 public class CarValidation extends BaseValidation {
 
 
+
   protected void checkMatchWithGameMoney(List<String> carNames, int gameMoney) {
     int carCount = gameMoney / 1000;
     boolean isValid = carNames.size() == carCount;
@@ -24,11 +25,19 @@ public class CarValidation extends BaseValidation {
   }
 
 
-  protected void checkRankedCarNames(List<String> carNames, List<String> topRanksCarNames) {
+  protected void checkTopRankCarsInRaceCars(List<String> carNames, List<String> topRanksCarNames) {
     Boolean isValid = carNames.containsAll(topRanksCarNames);
     if (!isValid) {
       throw new IllegalArgumentException("1 ~ 3등 차 이름은 경주할 자동차 이름에 포함되어야 합니다.");
     }
+  }
+
+  protected void checkRankedCarsLength(List<String> topRanksCarNames) {
+    Boolean isValid = topRanksCarNames.size() == 3;
+    if (!isValid) {
+      throw new IllegalArgumentException("3개의 자동차만 입력해야 합니다.");
+    }
+
   }
 
 
@@ -43,26 +52,32 @@ public class CarValidation extends BaseValidation {
 
 
   public CarValidationResult carValidate(String carNames, String topRanksCarNames, int amount) {
-    List<String> carList = Arrays.asList(carNames.split(","));
-    List<String> topRanksCarList = Arrays.asList(topRanksCarNames.split(","));
+    List<String> carList = Arrays.stream(carNames.split(",")).map(String::trim).toList();
+    List<String> topRanksCarList =
+        Arrays.stream(topRanksCarNames.split(",")).map(String::trim).toList();
+    System.out.println("carList  ===>> " + carList);
+    System.out.println("TopRanskCarList ===>>" + topRanksCarList);
 
 
+
+    // 레이싱 경주할 차들 validation
     checkMatchWithGameMoney(carList, amount);
     checkDuplicatedName(carList);
 
-
-    for (String rawCar : carList) {
-      String car = rawCar.trim();
-
-      super.checkNull(car);
-      super.checkBlank(car);
-      super.checkContainBlank(car);
+    for (String car : carList) {
+      super.validate(car);
       checkValidCarNameLength(car);
     }
 
-
+    // 순위권 차들 validation
+    checkRankedCarsLength(topRanksCarList);
     checkDuplicatedName(topRanksCarList);
-    checkRankedCarNames(carList, topRanksCarList);
+    checkTopRankCarsInRaceCars(carList, topRanksCarList);
+    for (String car : topRanksCarList) {
+      super.validate(car);
+      checkValidCarNameLength(car);
+    }
+
 
     return new CarValidationResult(carList, topRanksCarList);
   }
