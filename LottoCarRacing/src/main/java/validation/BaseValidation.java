@@ -22,13 +22,20 @@ public class BaseValidation {
     }
   }
 
+  protected int checkValidConvertedNumber(String str) {
+    try {
+      int num = Integer.parseInt(str);
+      return num;
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException("숫자를 입력해야 합니다.");
+    }
+  }
+
+
   public void validate(String str) {
     checkNull(str);
     checkBlank(str);
     checkContainBlank(str);
-
   }
-
-
 
 }

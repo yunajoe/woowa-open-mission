@@ -7,7 +7,7 @@ public class GameMoneyValidation extends BaseValidation {
   int UNIT = GameMoneyEnum.UNIT.getValue();
   int MAX_VALUE = GameMoneyEnum.MAX_VALUE.getValue();
   int MIN_VALUE = GameMoneyEnum.MIN_VALUE.getValue();
-  
+
 
   protected void checkNonDivisibleThousand(int amount) {
 
@@ -26,19 +26,10 @@ public class GameMoneyValidation extends BaseValidation {
     }
   }
 
-  protected int checkValidConvertedNumber(String str) {
-    try {
-      int amount = Integer.parseInt(str);
-      return amount;
-    } catch (NumberFormatException e) {
-      throw new IllegalArgumentException("숫자를 입력해야 합니다.");
-    }
-
-  }
-
+  
   public void gameMoneyValidate(String str) {
     super.validate(str);
-    int amount = checkValidConvertedNumber(str);
+    int amount = super.checkValidConvertedNumber(str);
     checkGameMoneyAmount(amount);
     checkNonDivisibleThousand(amount);
 
