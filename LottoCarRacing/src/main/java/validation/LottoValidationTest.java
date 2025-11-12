@@ -62,7 +62,16 @@ class LottoValidationTest {
     assertThatThrownBy(() -> validation.lottoValidate(numbers, bonusNum))
         .isInstanceOf(IllegalArgumentException.class).hasMessage("로또 번호는 1이상 45이하 여야 합니다.");
   }
+  
 
+  @Test
+  @DisplayName("보너스 번호가 로또 번호와 중복시 예외 발생")
+  void test_bonusNumber_In_lottoNumbers_shouldFail() {
+    String[] numbers = {"1", "2", "3", "4", "5", "6"};
+    String bonusNum = "6";
+    assertThatThrownBy(() -> validation.lottoValidate(numbers, bonusNum))
+        .isInstanceOf(IllegalArgumentException.class).hasMessage("보너스 번호는 로또 번호와 중복되면 안됩니다.");
+  }
 
 }
 
