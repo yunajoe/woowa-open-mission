@@ -1,11 +1,17 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Car;
+import model.RankCar;
+import service.LottoService;
 import validation.LottoValidation;
 
 /**
@@ -45,18 +51,29 @@ public class LottoServlet extends HttpServlet {
 
     try {
       LottoValidation lottoValidation = new LottoValidation();
+      LottoService lottoService = new LottoService();
+      HttpSession session = request.getSession();
 
       String[] numbers = {request.getParameter("num1"), request.getParameter("num2"),
           request.getParameter("num3"), request.getParameter("num4"), request.getParameter("num5"),
           request.getParameter("num6")};
       String bonusNumber = request.getParameter("bonusNum");
+
       lottoValidation.lottoValidate(numbers, bonusNumber);
 
+      List<RankCar> rankCars = (List<RankCar>) session.getAttribute("rankCars");
+
+      Map<RankCar, List<List<Integer>>> lottoResults = lottoService.run(rankCars);
+      
+      
+//      response.sendRedirect("result.jsp");
+      
+      request.setAttribute("lottoResults", lottoResults);
+      request.getRequestDispatcher("result.jsp").forward(request, response);
 
 
     } catch (Exception e) {
       throw new ServletException(e);
-
 
     }
 

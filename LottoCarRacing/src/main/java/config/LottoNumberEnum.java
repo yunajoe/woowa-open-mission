@@ -1,7 +1,7 @@
 package config;
 
 public enum LottoNumberEnum {
-   MIN_VALUE(1), MAX_VALUE(45);
+  SIZE(6), MIN_VALUE(1), MAX_VALUE(45);
   
   private final int value; 
   

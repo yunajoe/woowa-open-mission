@@ -55,10 +55,6 @@ public class CarValidation extends BaseValidation {
     List<String> carList = Arrays.stream(carNames.split(",")).map(String::trim).toList();
     List<String> topRanksCarList =
         Arrays.stream(topRanksCarNames.split(",")).map(String::trim).toList();
-    System.out.println("carList  ===>> " + carList);
-    System.out.println("TopRanskCarList ===>>" + topRanksCarList);
-
-
 
     // 레이싱 경주할 차들 validation
     checkMatchWithGameMoney(carList, amount);

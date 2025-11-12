@@ -10,8 +10,22 @@
 <title>레이싱 결과입니다.</title>
 </head>
 <body>
+  <%
+  List<Car> cars = (List<Car>) session.getAttribute("carRacingResults");
+  List<RankCar> topRanks = (List<RankCar>) session.getAttribute("rankCars");
+  %>
   <div class="container">
     <h1 class="title">자동차 경주 결과</h1>
+    <%
+    if (cars == null || cars.isEmpty()) {
+    %>
+    <h2 class="result-title">자동차 경주 결과  데이터가 없습니다.</h2>
+    <%
+    }
+    %>
+    <%
+    if (cars != null && !cars.isEmpty()) {
+    %>
     <table class="table">
       <tr>
         <th>자동차 이름</th>
@@ -22,13 +36,8 @@
         <th>순위</th>
       </tr>
       <%
-      List<Car> cars = (List<Car>) session.getAttribute("carRacingResults");
-      List<RankCar> topRanks = (List<RankCar>) session.getAttribute("rankCars");
-      %>
-      <%
-      if (cars != null && !cars.isEmpty()) {
-      	for (int i = 0; i < cars.size(); i++) {
-      		Car car = cars.get(i);
+      for (int i = 0; i < cars.size(); i++) {
+      	Car car = cars.get(i);
       %>
       <tr>
         <td><%=car.getName()%></td>
@@ -40,27 +49,30 @@
       </tr>
       <%
       }
-      } else {
-      %>
-      <tr>
-        <td>결과 데이터가 없습니다.</td>
-      </tr>
-      <%
-      }
       %>
     </table>
+    <%
+       }
+    %>
     <div class="result-container">
       <h3 class="result-title">맞춘 자동차</h3>
       <%
-      if (topRanks != null && !topRanks.isEmpty()) {
+        if (topRanks == null || topRanks.isEmpty()) {
+      %>
+      <h2 class="result-title">맞춘 자동차가 없습니다.</h2>
+       <%
+         }
+       %>  
+      <%
+       if (topRanks != null && !topRanks.isEmpty()) {
       %>
       <ul class="rank-container">
         <%
         for (RankCar rankCar : topRanks) {
         %>
-        <li>순위 <%= rankCar.getRanking() %> : <%= rankCar.getName() %></li>
+        <li>순위 <%=rankCar.getRanking()%> : <%=rankCar.getName()%></li>
         <%
-        }
+          }
         %>
       </ul>
       <form action="<%=request.getContextPath()%>/lotto" method="post" class="form">
@@ -81,11 +93,7 @@
         <button class="button">로또 결과 확인</button>
       </form>
       <%
-      } else {
-      %>
-      <h3 class="result-title">맞춘 자동차가 없습니다.</h3>
-      <%
-      }
+         } 
       %>
     </div>
   </div>

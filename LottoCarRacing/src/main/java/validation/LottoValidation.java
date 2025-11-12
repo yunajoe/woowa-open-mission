@@ -7,8 +7,8 @@ import config.LottoNumberEnum;
 
 public class LottoValidation extends BaseValidation {
   
-  int MAX_VALUE = LottoNumberEnum.MAX_VALUE.getValue();
   int MIN_VALUE = LottoNumberEnum.MIN_VALUE.getValue();
+  int MAX_VALUE = LottoNumberEnum.MAX_VALUE.getValue();
 
   protected void checkValidNumberRange(int num) {
     boolean isValid = num >= MIN_VALUE && num <= MAX_VALUE;
