@@ -3,11 +3,15 @@ package validation;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import config.LottoNumberEnum;
 
 public class LottoValidation extends BaseValidation {
+  
+  int MAX_VALUE = LottoNumberEnum.MAX_VALUE.getValue();
+  int MIN_VALUE = LottoNumberEnum.MIN_VALUE.getValue();
 
   protected void checkValidNumberRange(int num) {
-    boolean isValid = num >= 1 && num <= 45;
+    boolean isValid = num >= MIN_VALUE && num <= MAX_VALUE;
     if (!isValid) {
       throw new IllegalArgumentException("로또 번호는 1이상 45이하 여야 합니다.");
     }

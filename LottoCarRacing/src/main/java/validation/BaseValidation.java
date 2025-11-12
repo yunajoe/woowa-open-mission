@@ -37,5 +37,8 @@ public class BaseValidation {
     checkBlank(str);
     checkContainBlank(str);
   }
+  
+
+ 
 
 }
