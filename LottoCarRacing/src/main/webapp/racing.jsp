@@ -14,6 +14,7 @@
   List<Car> cars = (List<Car>) session.getAttribute("carRacingResults");
   List<RankCar> topRanks = (List<RankCar>) session.getAttribute("rankCars");
   %>
+  
   <div class="container">
     <h1 class="title">자동차 경주 결과</h1>
     <%

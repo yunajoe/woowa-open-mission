@@ -94,9 +94,6 @@ public class LottoService {
     List<Integer> lottoNums = lottoNumber.getNumbers();
     int bonusNum = lottoNumber.getBonusNumber();
 
-    System.out.println("선택한 로또 넘버 ===>" + lottoNums);
-    System.out.println("선택한 보너스 넘버 ===>" + bonusNum);
-
     for (RankCar car : rankCars) {
       List<List<Integer>> lottos = car.getLottoNumber();
       List<Integer> lottorankingResults = new ArrayList<>();
@@ -104,7 +101,6 @@ public class LottoService {
       for (List<Integer> lotto : lottos) {
         List<Integer> commonNumbers = extractCommonElements(lotto, lottoNums);
         int correctLottoNumber = commonNumbers.size();
-        System.out.println("correctLottoNumber ===>>>>"+ correctLottoNumber);
         boolean correctBonusNumber = lotto.contains(bonusNum);
         LottoRankEnum rankEnum = getLottoRankByMatchedNumber(correctLottoNumber, correctBonusNumber);
         

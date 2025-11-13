@@ -45,7 +45,7 @@ class GameMoneyValidationTest {
   }
 
   @ParameterizedTest
-  @ValueSource(strings = {"3999", "3123"})
+  @ValueSource(strings = {"5123", "55123"})
   @DisplayName("1000원으로 나누어 떨어지지 않으면 예외 발생")
   void test_invalidC_shouldFail(String input) {
     assertThatThrownBy(() -> validation.gameMoneyValidate(input))

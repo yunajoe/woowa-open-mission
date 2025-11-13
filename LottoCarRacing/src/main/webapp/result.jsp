@@ -34,7 +34,7 @@
         %>
             <div class="set-container">
                 <p >세트 <%= (i + 1) %> : <%= lottoSet %></p>
-                <p> 등수: <%= rankValue %></p>
+                <p><%= rankValue == 0 ? "탈락" : "등수: " + rankValue %></p>
             </div>
         <%
           }

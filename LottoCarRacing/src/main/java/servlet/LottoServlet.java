@@ -60,6 +60,7 @@ public class LottoServlet extends HttpServlet {
 
       LottoNumber lottoNumber = lottoValidation.lottoValidate(numbers, bonusNumber);
 
+      
       List<RankCar> rankCars = (List<RankCar>) session.getAttribute("rankCars");
 
       lottoService.run(rankCars);
@@ -67,6 +68,7 @@ public class LottoServlet extends HttpServlet {
       
       
       request.setAttribute("rankCars", rankCars);
+
       request.getRequestDispatcher("result.jsp").forward(request, response);
 
 
