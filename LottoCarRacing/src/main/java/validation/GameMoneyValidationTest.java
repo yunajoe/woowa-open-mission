@@ -37,11 +37,11 @@ class GameMoneyValidationTest {
 
 
   @ParameterizedTest
-  @ValueSource(strings = {"1000", "2000", "20000"})
+  @ValueSource(strings = {"1000", "2000", "200000"})
   @DisplayName("3000원 미만 입력 시 예외 발생")
   void test_under3000_shouldFail(String input) {
     assertThatThrownBy(() -> validation.gameMoneyValidate(input))
-        .isInstanceOf(IllegalArgumentException.class).hasMessage("최소 3000 최대 10000 입력해야 합니다.");
+        .isInstanceOf(IllegalArgumentException.class).hasMessage("최소 5000 최대 100000 입력해야 합니다.");
   }
 
   @ParameterizedTest

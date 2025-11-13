@@ -3,15 +3,21 @@ package validation;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import config.CarEnum;
+import config.GameMoneyEnum;
 import model.CarList;
 
 
 public class CarValidation extends BaseValidation {
 
+  int UNIT = GameMoneyEnum.UNIT.getValue();
+  int NAME_MIN_LENGTH = CarEnum.NAME_MIN_LENGTH.getValue();
+  int NAME_MAX_LENGTH = CarEnum.NAME_MAX_LENGTH.getValue();
+  int NUMBER_OF_RANK_CAR = CarEnum.NUMBER_OF_RANK_CAR.getValue();
 
 
   protected void checkMatchWithGameMoney(List<String> carNames, int gameMoney) {
-    int carCount = gameMoney / 1000;
+    int carCount = gameMoney / UNIT;
     boolean isValid = carNames.size() == carCount;
     if (!isValid) {
       throw new IllegalArgumentException("입력한 금액에 맞는 자동차 갯수를 입력해야 합니다.");
@@ -34,7 +40,7 @@ public class CarValidation extends BaseValidation {
   }
 
   protected void checkRankedCarsLength(List<String> topRanksCarNames) {
-    boolean isValid = topRanksCarNames.size() == 3;
+    boolean isValid = topRanksCarNames.size() == NUMBER_OF_RANK_CAR;
     if (!isValid) {
       throw new IllegalArgumentException("3개의 자동차만 입력해야 합니다.");
     }
@@ -44,7 +50,7 @@ public class CarValidation extends BaseValidation {
 
 
   protected void checkValidCarNameLength(String str) {
-    boolean isValid = str.length() >= 1 && str.length() <= 5;
+    boolean isValid = str.length() >= NAME_MIN_LENGTH && str.length() <= NAME_MAX_LENGTH;
     if (!isValid) {
       throw new IllegalArgumentException("자동차 이름 길이는 최소 한글자 최대 다섯글자입니다.");
     }

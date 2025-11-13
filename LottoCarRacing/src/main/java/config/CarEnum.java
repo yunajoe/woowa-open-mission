@@ -1,14 +1,12 @@
 package config;
 
+public enum CarEnum {
 
-public enum GameMoneyEnum {
-  UNIT(1000), MIN_VALUE(5000), MAX_VALUE(100000);
-
+  NAME_MIN_LENGTH(1), NAME_MAX_LENGTH(5), NUMBER_OF_RANK_CAR(3);
 
   private final int value;
 
-
-  GameMoneyEnum(int value) {
+  CarEnum(int value) {
     this.value = value;
   }
 

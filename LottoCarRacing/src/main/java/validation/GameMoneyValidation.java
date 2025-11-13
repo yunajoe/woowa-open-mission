@@ -22,7 +22,7 @@ public class GameMoneyValidation extends BaseValidation {
   protected void checkGameMoneyAmount(int amount) {
     boolean isValid = amount >= MIN_VALUE && amount <= MAX_VALUE;
     if (!isValid) {
-      throw new IllegalArgumentException("최소 3000 최대 10000 입력해야 합니다.");
+      throw new IllegalArgumentException("최소 5000 최대 100000 입력해야 합니다.");
     }
   }
 
