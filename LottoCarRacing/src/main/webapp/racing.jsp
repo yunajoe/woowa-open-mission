@@ -19,7 +19,7 @@
     <%
     if (cars == null || cars.isEmpty()) {
     %>
-    <h2 class="result-title">자동차 경주 결과  데이터가 없습니다.</h2>
+    <h2 class="result-title">자동차 경주 결과 데이터가 없습니다.</h2>
     <%
     }
     %>
@@ -52,19 +52,19 @@
       %>
     </table>
     <%
-       }
+    }
     %>
     <div class="result-container">
       <h3 class="result-title">맞춘 자동차</h3>
       <%
-        if (topRanks == null || topRanks.isEmpty()) {
+      if (topRanks == null || topRanks.isEmpty()) {
       %>
       <h2 class="result-title">맞춘 자동차가 없습니다.</h2>
-       <%
-         }
-       %>  
       <%
-       if (topRanks != null && !topRanks.isEmpty()) {
+      }
+      %>
+      <%
+      if (topRanks != null && !topRanks.isEmpty()) {
       %>
       <ul class="rank-container">
         <%
@@ -72,7 +72,7 @@
         %>
         <li>순위 <%=rankCar.getRanking()%> : <%=rankCar.getName()%></li>
         <%
-          }
+        }
         %>
       </ul>
       <form action="<%=request.getContextPath()%>/lotto" method="post" class="form">
@@ -93,7 +93,7 @@
         <button class="button">로또 결과 확인</button>
       </form>
       <%
-         } 
+      }
       %>
     </div>
   </div>

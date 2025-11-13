@@ -62,8 +62,8 @@ public class LottoServlet extends HttpServlet {
 
       List<RankCar> rankCars = (List<RankCar>) session.getAttribute("rankCars");
 
-//      Map<RankCar, List<List<Integer>>> lottoResults = lottoService.run(rankCars);
-
+////      Map<RankCar, List<List<Integer>>> lottoResults = lottoService.run(rankCars);
+//
       lottoService.run(rankCars);
       lottoService.winningLotto(rankCars, lottoNumber);
 
@@ -73,6 +73,9 @@ public class LottoServlet extends HttpServlet {
 
 //      request.setAttribute("lottoResults", lottoResults);
 //      request.getRequestDispatcher("result.jsp").forward(request, response);
+      System.out.println("✅ LottoServlet 실행됨");
+      response.sendRedirect("racing.jsp");
+
 
 
     } catch (Exception e) {
