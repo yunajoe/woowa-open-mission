@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.Car;
-import model.CarValidationResult;
+import model.CarList;
 import model.RankCar;
 import service.CarService;
 import service.RacingService;
@@ -61,7 +61,7 @@ public class CarServlet extends HttpServlet {
 
 
       int amount = Integer.parseInt(gameMoney);
-      CarValidationResult result = carValidation.carValidate(carNames, topRanksCarNames, amount);
+      CarList result = carValidation.carValidate(carNames, topRanksCarNames, amount);
 
       List<String> cars = result.getCarList();
       List<String> topRanksCars = result.getTopRanksCarList();

@@ -26,7 +26,7 @@ public class GameMoneyValidation extends BaseValidation {
     }
   }
 
-  
+
   public void gameMoneyValidate(String str) {
     super.validate(str);
     int amount = super.checkValidConvertedNumber(str);

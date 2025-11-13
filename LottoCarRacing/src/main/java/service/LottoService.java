@@ -1,12 +1,12 @@
 package service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 import camp.nextstep.edu.missionutils.Randoms;
 import config.LottoNumberEnum;
 import config.RankEnum;
+import model.LottoNumber;
 import model.RankCar;
 
 
@@ -27,12 +27,13 @@ public class LottoService {
 
   protected List<List<Integer>> generateLottoNumbersByRank(int rank) {
     RankEnum rankEnum = null;
-    if (rank == 1)
+    if (rank == 1) {
       rankEnum = RankEnum.FIRST;
-    else if (rank == 2)
+    } else if (rank == 2) {
       rankEnum = RankEnum.SECOND;
-    else if (rank == 3)
+    } else if (rank == 3) {
       rankEnum = RankEnum.THIRD;
+    }
 
     List<List<Integer>> numbersByRank = new ArrayList<>();
 
@@ -47,17 +48,65 @@ public class LottoService {
 
   }
 
-  public Map<RankCar, List<List<Integer>>> run(List<RankCar> rankCars) {
 
-    Map<RankCar, List<List<Integer>>> allNumbers = new HashMap<>();
+//
+//  public Map<RankCar, List<List<Integer>>> run(List<RankCar> rankCars) {
+//
+//    Map<RankCar, List<List<Integer>>> allNumbers = new HashMap<>();
+//    for (RankCar car : rankCars) {
+//      int rank = car.getRanking();
+//      List<List<Integer>> numbers = generateLottoNumbersByRank(rank);
+//      allNumbers.put(car, numbers);
+//
+//    }
+//    return allNumbers;
+//  }
+
+
+  public void run(List<RankCar> rankCars) {
     for (RankCar car : rankCars) {
       int rank = car.getRanking();
       List<List<Integer>> numbers = generateLottoNumbersByRank(rank);
-      allNumbers.put(car, numbers);
-      
+      car.setLottoNumbers(numbers);
+    }
 
-    }  
-    return allNumbers;
+  }
+  protected List<Integer> extractCommonElements(List<Integer> randomLotto,
+      List<Integer> inputLotto) {
+    List<Integer> commonElements =
+        randomLotto.stream().filter(inputLotto::contains).collect(Collectors.toList());
+    return commonElements;
+  }
+
+
+
+  // TODO: 로또 위너 로직 구현하
+  public void winningLotto(List<RankCar> rankCars, LottoNumber lottoNumber) {
+
+    List<Integer> lottoNums = lottoNumber.getNumbers();
+    int bonusNum = lottoNumber.getBonusNumber();
+
+    System.out.println("선택한 로또 넘버 ===>" + lottoNums);
+    System.out.println("선택한 보너스 넘버 ===>" + bonusNum);
+
+    for (RankCar car : rankCars) {
+      List<List<Integer>> lottos = car.getLottoNumber();
+      System.out.println("randomLottos ===>"+ lottos);
+//      List<List<Integer>> lottos = lottoResults.get(car);
+//
+//      for (List<Integer> lotto : lottos) {
+//        List<Integer> commonNumbers = extractCommonElements(lotto, lottoNums);
+//        System.out.println("공통 요소" + commonNumbers);
+//        int correctNumber = commonNumbers.size();
+//
+//
+//
+//      }
+
+
+    }
+
+
   }
 
 

@@ -3,7 +3,8 @@ package validation;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import model.CarValidationResult;
+import model.CarList;
+
 
 public class CarValidation extends BaseValidation {
 
@@ -33,7 +34,7 @@ public class CarValidation extends BaseValidation {
   }
 
   protected void checkRankedCarsLength(List<String> topRanksCarNames) {
-    Boolean isValid = topRanksCarNames.size() == 3;
+    boolean isValid = topRanksCarNames.size() == 3;
     if (!isValid) {
       throw new IllegalArgumentException("3개의 자동차만 입력해야 합니다.");
     }
@@ -51,7 +52,7 @@ public class CarValidation extends BaseValidation {
 
 
 
-  public CarValidationResult carValidate(String carNames, String topRanksCarNames, int amount) {
+  public CarList carValidate(String carNames, String topRanksCarNames, int amount) {
     List<String> carList = Arrays.stream(carNames.split(",")).map(String::trim).toList();
     List<String> topRanksCarList =
         Arrays.stream(topRanksCarNames.split(",")).map(String::trim).toList();
@@ -75,7 +76,7 @@ public class CarValidation extends BaseValidation {
     }
 
 
-    return new CarValidationResult(carList, topRanksCarList);
+    return new CarList(carList, topRanksCarList);
   }
 
 }

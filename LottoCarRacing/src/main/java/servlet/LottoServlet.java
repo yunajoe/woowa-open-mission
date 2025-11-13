@@ -2,14 +2,13 @@ package servlet;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Car;
+import model.LottoNumber;
 import model.RankCar;
 import service.LottoService;
 import validation.LottoValidation;
@@ -59,17 +58,21 @@ public class LottoServlet extends HttpServlet {
           request.getParameter("num6")};
       String bonusNumber = request.getParameter("bonusNum");
 
-      lottoValidation.lottoValidate(numbers, bonusNumber);
+      LottoNumber lottoNumber = lottoValidation.lottoValidate(numbers, bonusNumber);
 
       List<RankCar> rankCars = (List<RankCar>) session.getAttribute("rankCars");
 
-      Map<RankCar, List<List<Integer>>> lottoResults = lottoService.run(rankCars);
-      
-      
-//      response.sendRedirect("result.jsp");
-      
-      request.setAttribute("lottoResults", lottoResults);
-      request.getRequestDispatcher("result.jsp").forward(request, response);
+//      Map<RankCar, List<List<Integer>>> lottoResults = lottoService.run(rankCars);
+
+      lottoService.run(rankCars);
+      lottoService.winningLotto(rankCars, lottoNumber);
+
+      // TODO: 로또 winner 계산하기
+//      lottoService.winningLotto(rankCars, lottoNumber, lottoResults);
+
+
+//      request.setAttribute("lottoResults", lottoResults);
+//      request.getRequestDispatcher("result.jsp").forward(request, response);
 
 
     } catch (Exception e) {
