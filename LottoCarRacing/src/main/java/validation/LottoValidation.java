@@ -4,9 +4,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import config.LottoNumberEnum;
+import model.LottoNumber;
 
 public class LottoValidation extends BaseValidation {
-  
+
   int MIN_VALUE = LottoNumberEnum.MIN_VALUE.getValue();
   int MAX_VALUE = LottoNumberEnum.MAX_VALUE.getValue();
 
@@ -16,13 +17,13 @@ public class LottoValidation extends BaseValidation {
       throw new IllegalArgumentException("로또 번호는 1이상 45이하 여야 합니다.");
     }
   }
-  
+
   protected void checkBonusNumberInLottoNumber(List<Integer> lottoNumbers, int bonusNumber){
     boolean isNotValid = lottoNumbers.contains(bonusNumber);
     if(isNotValid) {
-      throw new IllegalArgumentException("보너스 번호는 로또 번호와 중복되면 안됩니다."); 
-    }  
-    
+      throw new IllegalArgumentException("보너스 번호는 로또 번호와 중복되면 안됩니다.");
+    }
+
   }
 
 
@@ -41,7 +42,7 @@ public class LottoValidation extends BaseValidation {
 
 
 
-  public void lottoValidate(String[] numbers, String bonusNum) {
+  public LottoNumber lottoValidate(String[] numbers, String bonusNum) {
     // 로또 번호 validation
     for (String num : numbers) {
       super.validate(num);
@@ -61,6 +62,7 @@ public class LottoValidation extends BaseValidation {
     bonusNumberValidate(lottoNumbers, bonusNumber);
 
 
+    return new LottoNumber(lottoNumbers, bonusNumber);
 
   }
 
