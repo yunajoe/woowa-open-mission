@@ -1,6 +1,5 @@
-<%@page import="java.util.Map"%>
-<%@page import="model.RankCar"%>
 <%@page import="java.util.List"%>
+<%@page import="model.RankCar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -13,38 +12,36 @@
 <body>
   <div class="container">
     <h1 class="title">로또 결과</h1>
-    <%
-    Map<RankCar, List<List<Integer>>> lottoResults = (Map<RankCar, List<List<Integer>>>) request
-    		.getAttribute("lottoResults");
 
-    if (lottoResults == null || lottoResults.isEmpty()) {
-    %>
-    <h2 class="result-title">결과가 없습니다.</h2>
-    
     <%
-       return; 
-    }
-
-    for (Map.Entry<RankCar, List<List<Integer>>> entry : lottoResults.entrySet()) {
-        RankCar car = entry.getKey();
-        String name = car.getName();
-        int rank = car.getRanking();
-       List<List<Integer>> numbersList = entry.getValue();
+      List<RankCar> rankCars = (List<RankCar>) request.getAttribute("rankCars");
+      if (rankCars == null || rankCars.isEmpty()) {
     %>
-    
-    <h3 class="rank">
-         <%= rank %> 등 - <%= name %>
-    </h3>
+        <h2 class="result-title">결과가 없습니다.</h2>
     <%
-       for (int i = 0; i < numbersList.size(); i++) {
-    	List<Integer> set = numbersList.get(i);
+      } else {
+        for (RankCar car : rankCars) {
+          String name = car.getName();
+          int carRank = car.getRanking();
+          List<List<Integer>> lottoNumbers = car.getLottoNumber();
+          List<Integer> lottoRanking = car.getLottoRanking();
     %>
-    <div class="set-container">
-       <p class="set"> 세트  <%=(i + 1)%> : <%=set%> </p>   
-    </div>
+        <h3 class="rank"><%= carRank %> 등 - <%= name %></h3>
+        <%
+          for (int i = 0; i < lottoNumbers.size(); i++) {
+            List<Integer> lottoSet = lottoNumbers.get(i);
+            Integer rankValue = lottoRanking.get(i);
+        %>
+            <div class="set-container">
+                <p >세트 <%= (i + 1) %> : <%= lottoSet %></p>
+                <p> 등수: <%= rankValue %></p>
+            </div>
+        <%
+          }
+        %>
     <%
-       }
-     }
+        }
+      }
     %>
   </div>
 </body>

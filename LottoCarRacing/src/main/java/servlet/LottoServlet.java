@@ -62,19 +62,13 @@ public class LottoServlet extends HttpServlet {
 
       List<RankCar> rankCars = (List<RankCar>) session.getAttribute("rankCars");
 
-////      Map<RankCar, List<List<Integer>>> lottoResults = lottoService.run(rankCars);
-//
       lottoService.run(rankCars);
       lottoService.winningLotto(rankCars, lottoNumber);
+      
+      
+      request.setAttribute("rankCars", rankCars);
+      request.getRequestDispatcher("result.jsp").forward(request, response);
 
-      // TODO: 로또 winner 계산하기
-//      lottoService.winningLotto(rankCars, lottoNumber, lottoResults);
-
-
-//      request.setAttribute("lottoResults", lottoResults);
-//      request.getRequestDispatcher("result.jsp").forward(request, response);
-      System.out.println("✅ LottoServlet 실행됨");
-      response.sendRedirect("racing.jsp");
 
 
 

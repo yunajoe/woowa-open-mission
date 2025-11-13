@@ -25,7 +25,10 @@ body {
 
 .title {
 	font-size: 6.4rem;
+}
 
+.result-title{
+    font-size: 6.4rem;
 }
 .rank {
    font-size: 3.2rem;
@@ -36,10 +39,10 @@ body {
    padding: 10px;
    width: 80%;
    min-width: 300px;
+   display:flex;
+   justify-content:space-between;
+   align-items:center;
+   font-size: 2rem;
 		
 }
 
-.set {
-	font-size: 2rem;
-
-}

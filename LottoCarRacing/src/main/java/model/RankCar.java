@@ -39,7 +39,7 @@ public class RankCar {
     return lottoRanking;
   }
 
-  public void setLottoResults(List<Integer> lottoRanking) {
+  public void setLottoLanking(List<Integer> lottoRanking) {
     this.lottoRanking = lottoRanking;
   }
 
