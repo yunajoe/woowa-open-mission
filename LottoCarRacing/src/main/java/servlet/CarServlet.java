@@ -68,9 +68,9 @@ public class CarServlet extends HttpServlet {
       List<Car> carInstance = carService.run(cars);
       List<RankCar> rankCars = carService.runTopRanksCars(carInstance, topRanksCars);
 
- 
 
-      //  세션을 저장해야 lottoServlet에서도 사용이 가능하다. 
+
+      //  세션을 저장해야 lottoServlet에서도 사용이 가능하다.
       session.setAttribute("carRacingResults", carInstance);
       session.setAttribute("rankCars", rankCars);
 

@@ -103,14 +103,14 @@ public class LottoService {
         int correctLottoNumber = commonNumbers.size();
         boolean correctBonusNumber = lotto.contains(bonusNum);
         LottoRankEnum rankEnum = getLottoRankByMatchedNumber(correctLottoNumber, correctBonusNumber);
-        
-        
+
+
         lottorankingResults.add(rankEnum.getValue());
 
       }
-    
+
        car.setLottoLanking(lottorankingResults);
- 
+
     }
 
 
