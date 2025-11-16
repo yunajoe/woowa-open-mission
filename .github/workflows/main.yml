@@ -3,7 +3,7 @@ name: 자동 빌드 배포 구축하기
 on:
   push:
     branches:
-      - workflow-debugging
+      - main
 
 jobs:
   deploy:
