@@ -1,35 +1,46 @@
 name: 자동 빌드 배포 구축하기
 
-
 on:
   push:
     branches:
-      - main
+      - workflow-debugging
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. 소스 코드 체크아웃
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # 2. Docker Hub 로그인
+    # 디렉토리 및 Dockerfile 위치 디버깅
+    - name: Debug - Check directory structure
+      run: |
+        echo "현재 위치:"
+        pwd
+        echo "현재 디렉토리 파일 리스트:"
+        ls -al
+        echo "LottoCarRacing 디렉토리 구조:"
+        ls -al ./LottoCarRacing || echo "LottoCarRacing 폴더 없음"
+        echo "LottoCarRacing 내부 Dockerfile 확인:"
+        if [ -f ./LottoCarRacing/Dockerfile ]; then 
+          echo "Dockerfile FOUND in LottoCarRacing"
+        else 
+          echo "Dockerfile NOT FOUND in LottoCarRacing"
+        fi
+
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    # 3. Docker 이미지 빌드 & 푸시
     - name: Build and Push Docker image
       run: |
+        echo "Docker build 시작"
         docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest ./LottoCarRacing
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest
 
-
-    # 4. EC2에 SSH 접속하여 컨테이너 업데이트
     - name: Deploy to EC2
       uses: appleboy/ssh-action@v0.1.8
       with:
