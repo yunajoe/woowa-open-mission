@@ -25,8 +25,14 @@ jobs:
     # 3. Docker 이미지 빌드 & 푸시
     - name: Build and Push Docker image
       run: |
+        echo "현재 경로: $(pwd)"
+        echo "현재 경로 파일 및 폴더:"
+        ls -la
+        echo "LottoCarRacing 폴더 내용:"
+        ls -la LottoCarRacing || echo "LottoCarRacing 폴더가 존재하지 않음"
         docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest ./LottoCarRacing
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest
+
 
 
     # 4. EC2에 SSH 접속하여 컨테이너 업데이트
