@@ -13,21 +13,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # 디렉토리 및 Dockerfile 위치 디버깅
-    - name: Debug - Check directory structure
-      run: |
-        echo "현재 위치:"
-        pwd
-        echo "현재 디렉토리 파일 리스트:"
-        ls -al
-        echo "LottoCarRacing 디렉토리 구조:"
-        ls -al ./LottoCarRacing || echo "LottoCarRacing 폴더 없음"
-        echo "LottoCarRacing 내부 Dockerfile 확인:"
-        if [ -f ./LottoCarRacing/Dockerfile ]; then 
-          echo "Dockerfile FOUND in LottoCarRacing"
-        else 
-          echo "Dockerfile NOT FOUND in LottoCarRacing"
-        fi
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
