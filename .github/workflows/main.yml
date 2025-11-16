@@ -25,10 +25,9 @@ jobs:
     # 3. Docker 이미지 빌드 & 푸시
     - name: Build and Push Docker image
       run: |
-        pwd
-        ls -la
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest .
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest ./LottoCarRacing
         docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest
+
 
     # 4. EC2에 SSH 접속하여 컨테이너 업데이트
     - name: Deploy to EC2
