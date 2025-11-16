@@ -1,4 +1,5 @@
-name: Build & Deploy WAR to EC2
+name: 자동 빌드 배포 구축하기
+
 
 on:
   push:
@@ -6,7 +7,7 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,32 +15,20 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # 2. Java 21 & Maven 설치
-    - name: Set up Java 21 and Maven
-      uses: actions/setup-java@v3
-      with:
-        java-version: '21'
-        distribution: 'temurin'
-        cache: maven
-
-    # 3. WAR 빌드
-    - name: Build WAR
-      run: mvn clean package -DskipTests
-
-    # 4. Docker Hub 로그인
+    # 2. Docker Hub 로그인
     - name: Log in to Docker Hub
       uses: docker/login-action@v2
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-    # 5. Docker 이미지 빌드 & 푸시
+    # 3. Docker 이미지 빌드 & 푸시
     - name: Build and Push Docker image
       run: |
-        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/{{ secrets.PROJECT_NAME }}:latest .
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/{{ secrets.PROJECT_NAME }}:latest
+        docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest .
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest
 
-    # 6. EC2에 SSH 접속하여 컨테이너 업데이트
+    # 4. EC2에 SSH 접속하여 컨테이너 업데이트
     - name: Deploy to EC2
       uses: appleboy/ssh-action@v0.1.8
       with:
@@ -48,7 +37,7 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         port: 22
         script: |
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/{{ secrets.PROJECT_NAME }}:latest
+          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest
           docker stop ${{ secrets.PROJECT_NAME }} || true
           docker rm ${{ secrets.PROJECT_NAME }} || true
-          docker run -d --name ${{ secrets.PROJECT_NAME }} -p ${{ secrets.PORT }}:8080 ${{ secrets.DOCKERHUB_USERNAME }}/{{ secrets.PROJECT_NAME }}:latest
+          docker run -d --name ${{ secrets.PROJECT_NAME }} -p ${{ secrets.PORT }}:8080 ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.PROJECT_NAME }}:latest
