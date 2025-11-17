@@ -43,6 +43,9 @@
         }
       }
     %>
+    <a href="${pageContext.request.contextPath}/index.jsp">
+        <button class="button">다시 경주하기</button>
+    </a>
   </div>
 </body>
 </html>

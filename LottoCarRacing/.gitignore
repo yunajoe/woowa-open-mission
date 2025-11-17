@@ -1,1 +1,30 @@
-/build/
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Eclipse settings
+.project
+.classpath
+.settings/
+.metadata/
+
+# Build & Generated files
+build/
+bin/
+target/
+out/
+
+# Java compiled classes
+*.class
+
+# Logs
+*.log
+logs/
+
+# Temp files
+*.tmp
+*.bak
+*.swp
+
+# Tomcat generated directories (특정 환경에서 생길 수 있음)
+work/
