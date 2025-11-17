@@ -27,4 +27,4 @@ logs/
 *.swp
 
 # Tomcat generated directories (특정 환경에서 생길 수 있음)
-work/
+work/.DS_Store
