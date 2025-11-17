@@ -13,7 +13,7 @@ RUN apt-get update && \
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # 4. WAR 파일 복사
-COPY lottoRacing.war /usr/local/tomcat/webapps/
+COPY lottoRacingVer2.war /usr/local/tomcat/webapps/
 
 
 # 5. Tomcat 포트
