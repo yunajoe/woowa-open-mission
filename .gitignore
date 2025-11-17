@@ -16,6 +16,9 @@ out/
 
 # Java compiled classes
 *.class
+*.jar
+*.war
+*.ear
 
 # Logs
 *.log
