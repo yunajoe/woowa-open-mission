@@ -97,7 +97,7 @@ class CarValidationTest {
         .isInstanceOf(IllegalArgumentException.class)
         .hasMessageContaining("중복된 자동차 이름은 입력할 수 없습니다.");
   }
-  
+
 
   @Test
   @DisplayName("1~3등 차 이름은 자동차 이름이 중복일 경우 예외 발생")
