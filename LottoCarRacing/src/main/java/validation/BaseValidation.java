@@ -22,9 +22,9 @@ public class BaseValidation {
     }
   }
 
-  protected int checkValidConvertedNumber(String str) {
+  protected long checkValidConvertedNumber(String str) {
     try {
-      int num = Integer.parseInt(str);
+      long num = Long.parseLong(str);
       return num;
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException("숫자를 입력해야 합니다.");

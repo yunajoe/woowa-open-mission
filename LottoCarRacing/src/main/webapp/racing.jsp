@@ -10,11 +10,17 @@
 <title>레이싱 결과입니다.</title>
 </head>
 <body>
+  <nav class="navigation">
+    <p>보유한 게임머니</p>
+    <p>
+      <%=session.getAttribute("gameMoney") != null ? session.getAttribute("gameMoney") + "원" : "0원"%>
+    </p>
+  </nav>
   <%
   List<Car> cars = (List<Car>) session.getAttribute("carRacingResults");
   List<RankCar> topRanks = (List<RankCar>) session.getAttribute("rankCars");
   %>
-  
+
   <div class="container">
     <h1 class="title">자동차 경주 결과</h1>
     <%
@@ -38,7 +44,7 @@
       </tr>
       <%
       for (int i = 0; i < cars.size(); i++) {
-      	Car car = cars.get(i);
+        Car car = cars.get(i);
       %>
       <tr>
         <td><%=car.getName()%></td>
@@ -61,6 +67,10 @@
       if (topRanks == null || topRanks.isEmpty()) {
       %>
       <h2 class="result-title">맞춘 자동차가 없습니다.</h2>
+      <a href="${pageContext.request.contextPath}/index.jsp">
+        <button class="button">다시 경주하기</button>
+      </a>
+
       <%
       }
       %>
@@ -81,9 +91,12 @@
           <h3 class="lotto-title">당첨 번호 입력</h3>
           <p class="info">1~45 사이의 숫자를 각각 입력해주세요</p>
           <div class="lotto-input-box-container">
-            <input name="num1" /> <input name="num2" /> <input name="num3" /> <input name="num4" /> <input
-              name="num5"
-            /> <input name="num6" />
+            <input name="num1" />
+            <input name="num2" />
+            <input name="num3" />
+            <input name="num4" />
+            <input name="num5" />
+            <input name="num6" />
           </div>
         </div>
         <div class="lotto-container">
