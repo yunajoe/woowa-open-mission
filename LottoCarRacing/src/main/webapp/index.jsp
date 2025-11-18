@@ -17,7 +17,7 @@ response.setDateHeader("Expires", 0);
   <nav class="navigation">
     <p>보유한 게임머니</p>
     <p>
-      <%=session.getAttribute("gameMoney") != null ? session.getAttribute("gameMoney") + "원" : "0원"%>
+      <%=session.getAttribute("totalGameMoney") != null ? session.getAttribute("totalGameMoney") + "원" : "0원"%>
     </p>
   </nav>
   <div class="container">
