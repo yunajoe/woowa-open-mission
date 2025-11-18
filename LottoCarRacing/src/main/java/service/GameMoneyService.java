@@ -4,6 +4,7 @@ import java.util.List;
 import config.GameMoneyEnum;
 import config.LottoRankEnum;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import model.RankCar;
 
 public class GameMoneyService {
@@ -11,10 +12,25 @@ public class GameMoneyService {
   int UNIT = GameMoneyEnum.UNIT.getValue();
 
 
+   public void calculateGameMoneyWithRetainedGameMoney(HttpServletRequest request, long gameMoney){
+     HttpSession session = request.getSession();
+
+     // 기존 세션 값 가져오기 (null 체크 포함)
+     Long retainedGameMoneyObj = (Long) session.getAttribute("totalGameMoney");
+     long retainedGameMoney = (retainedGameMoneyObj != null) ? retainedGameMoneyObj : 0L;
+
+     // 전달받은 gameMoney와 합산
+     long totalGameMoney = gameMoney + retainedGameMoney;
+
+     // 세션에 Long 타입으로 저장
+     session.setAttribute("totalGameMoney", totalGameMoney);
+   }
+
+
   public void calculateGameMoneyWithRacingCars(HttpServletRequest request, long gameMoney,
       List<String> cars) {
     long REMAINING_GAME_MONEY = gameMoney - cars.size() * UNIT;
-    request.getSession().setAttribute("gameMoney", REMAINING_GAME_MONEY);
+    request.getSession().setAttribute("totalGameMoney", REMAINING_GAME_MONEY);
 
   }
 
@@ -23,14 +39,12 @@ public class GameMoneyService {
     long TOTAL_PRIZE_SUM = 0;
     for (RankCar car : rankCars) {
       List<Integer> lottoRanking = car.getLottoRanking();
-      System.out.println("랭킹 ===>>" + lottoRanking);
       for (int rank : lottoRanking) {
         long prize = LottoRankEnum.getPrizeAmountFromRank(rank);
         TOTAL_PRIZE_SUM += prize;
       }
     }
-    System.out.println(" 총 합  ===>" +  TOTAL_PRIZE_SUM);
-    request.getSession().setAttribute("gameMoney", TOTAL_PRIZE_SUM);
+    request.getSession().setAttribute("totalGameMoney", TOTAL_PRIZE_SUM);
 
 
   }
