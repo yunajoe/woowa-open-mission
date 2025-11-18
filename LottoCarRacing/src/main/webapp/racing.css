@@ -4,11 +4,25 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	min-height: 100vh;
+/* 	justify-content: center;
+ */	min-height: 100vh;
     background-color: #E5E7EB;
 	
 }
+
+
+.navigation {
+	box-sizing: border-box;
+	display: flex;
+	justify-content:space-between;
+	align-items:center;
+	background: #82bbdf;
+	width:100%;
+	padding: 20px 80px;
+    font-size: 24px;
+	font-weight:600;
+}
+
 
 .container {
    background-color: #fff;	
@@ -16,6 +30,7 @@ body {
    flex-direction:column;	
    row-gap: 30px;
    padding: 20px;
+   margin-top: 100px;
    
 }
 

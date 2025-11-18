@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta charset="UTF-8">
@@ -9,6 +9,12 @@
 <title>자동차 경주 & 로또</title>
 </head>
 <body>
+  <nav class="navigation">
+    <p>보유한 게임머니</p>
+    <p>
+      <%=session.getAttribute("gameMoney") != null ? session.getAttribute("gameMoney") + "원" : "0원"%>
+    </p>
+  </nav>
   <div class="container">
     <div class="title-container">
       <h1 class="title">자동차 경주 & 로또</h1>
@@ -17,13 +23,15 @@
     <form action="<%=request.getContextPath()%>/car" method=post class="form">
       <div class="car-input-container">
         <div class="input-container">
-          <label for="car-input"> 경주할 자동차 이름 입력 (쉼표로 구분)</label> <input id="car-input" name="carNames" />
+          <label for="car-input"> 경주할 자동차 이름 입력 (쉼표로 구분)</label>
+          <input id="car-input" name="carNames" />
         </div>
         <p class="info">* 5~100대, 이름 1~5글자, 공백 불가, 중복 불가</p>
       </div>
       <div class="car-input-container">
         <div class="input-container">
-          <label for="car-input">1 ~ 3등 자동차 이름 입력 (쉼표로 구분)</label> <input id="car-input" name="topRanksCarNames" />
+          <label for="car-input">1 ~ 3등 자동차 이름 입력 (쉼표로 구분)</label>
+          <input id="car-input" name="topRanksCarNames" />
         </div>
         <p class="info">* 1 ~ 3등을 입력해주세요</p>
       </div>

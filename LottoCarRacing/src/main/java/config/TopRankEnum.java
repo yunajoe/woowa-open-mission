@@ -1,13 +1,13 @@
 package config;
 
-public enum RankEnum {
+public enum TopRankEnum {
      FIRST(10),
      SECOND(5),
      THIRD(3);
 
     private final int repeatCount;
 
-    RankEnum(int repeatCount){
+    TopRankEnum(int repeatCount){
       this.repeatCount = repeatCount;
     }
 
