@@ -34,7 +34,7 @@ public class GameMoneyService {
 
   }
 
-  public void calculateGameMoneyWithLotto(HttpServletRequest request, long gameMoney, List<RankCar> rankCars) {
+  public void calculateGameMoneyWithLotto(HttpServletRequest request, List<RankCar> rankCars, long totalGameMoney) {
     // 현재 보유하고 있는 게임 머니에 등수 결과에 따라 돈을 다시 add up 해준다.
     long TOTAL_PRIZE_SUM = 0;
     for (RankCar car : rankCars) {
