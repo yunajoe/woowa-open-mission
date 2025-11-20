@@ -10,6 +10,12 @@
 <title>로또 결과</title>
 </head>
 <body>
+  <nav class="navigation">
+    <p>보유한 게임머니</p>
+    <p>
+      <%=session.getAttribute("totalGameMoney") != null ? session.getAttribute("totalGameMoney") + "원" : "0원"%>
+    </p>
+  </nav>
   <div class="container">
     <h1 class="title">로또 결과</h1>
 
